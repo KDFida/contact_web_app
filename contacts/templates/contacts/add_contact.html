@@ -1,0 +1,33 @@
+{% extends 'contacts/base.html' %}
+{% block content %}
+<h2>Add Contact</h2>
+<form id="contact-form" method="post" action="{% url 'contacts:add_contact' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Add Contact</button>
+</form>
+<div id="form-result"></div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+$(document).ready(function(){
+    $('#contact-form').on('submit', function(e){
+        e.preventDefault();  // Prevent full page reload
+        $.ajax({
+            url: $(this).attr('action'),
+            type: "POST",
+            data: $(this).serialize(),
+            headers: { 'x-requested-with': 'XMLHttpRequest' },
+            success: function(data){
+                $('#form-result').html('<div class="alert alert-success">Contact added successfully!</div>');
+                // Optionally, update the contact list dynamically
+            },
+            error: function(){
+                $('#form-result').html('<div class="alert alert-danger">An error occurred.</div>');
+            }
+        });
+    });
+});
+</script>
+{% endblock %}

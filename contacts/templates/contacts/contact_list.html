@@ -1,0 +1,27 @@
+{% extends 'contacts/base.html' %}
+
+{% block content %}
+<h2>Contacts</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Full Name</th>
+            <th>Address</th>
+            <th>Phone Number</th>
+        </tr>
+    </thead>
+    <tbody id="contact-table">
+        {% for contact in contacts %}
+        <tr>
+            <td>{{ contact.full_name }}</td>
+            <td>{{ contact.address }}</td>
+            <td>{{ contact.phone_number }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="3">No contacts available.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
