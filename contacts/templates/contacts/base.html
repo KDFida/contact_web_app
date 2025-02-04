@@ -1,32 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- The character encoding for the document -->
     <meta charset="UTF-8">
+    <!-- The title of the page that appears in the browser tab -->
     <title>Contact Manager</title>
-    <!-- Bootstrap for styling -->
+    <!-- Link to Bootstrap CSS for styling the page -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    {# Load Django's static files template tag library #}
     {% load static %}
+    <!-- Link to the custom stylesheet for the contacts app. 
+         This assumes the file is located at 'contacts/static/contacts/style.css' -->
     <link rel="stylesheet" href="{% static 'contacts/style.css' %}">
 </head>
 <body>
+    <!-- Start of the navigation bar using Bootstrap classes -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <!-- Navbar brand that links to the contact list page using Django's URL template tag -->
       <a class="navbar-brand" href="{% url 'contacts:contact_list' %}">Contact Manager</a>
+      <!-- Collapsible content for the navbar -->
       <div class="collapse navbar-collapse">
+        <!-- Unordered list for navigation items -->
         <ul class="navbar-nav mr-auto">
+          <!-- Navigation item linking to the contacts list -->
           <li class="nav-item">
             <a class="nav-link" href="{% url 'contacts:contact_list' %}">Contacts</a>
           </li>
+          <!-- Navigation item linking to the add contact page -->
           <li class="nav-item">
             <a class="nav-link" href="{% url 'contacts:add_contact' %}">Add Contact</a>
           </li>
         </ul>
       </div>
     </nav>
+    <!-- Main container for page-specific content with a top margin (mt-4) -->
     <div class="container mt-4">
+        {# This block is where child templates will insert their content #}
         {% block content %}
         {% endblock %}
     </div>
+    <!-- Include jQuery from a CDN, which is required for some Bootstrap components -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    {# This block allows child templates to insert additional scripts if needed #}
     {% block scripts %}
     {% endblock %}
 </body>

@@ -1,27 +1,38 @@
 {% extends 'contacts/base.html' %}
+{# 
+  This template extends the 'base.html' template found in the contacts templates directory.
+  It inherits the overall layout defined in 'base.html'.
+#}
 
 {% block content %}
-<h2>Contacts</h2>
-<table class="table table-striped">
+  {# Start of the content block where page-specific content will be injected #}
+  <h2>Contacts</h2>
+  {# Header for the contacts page #}
+  
+  <table class="table table-striped">
+    {# A Bootstrap-styled table with striped rows for better readability #}
     <thead>
-        <tr>
-            <th>Full Name</th>
-            <th>Address</th>
-            <th>Phone Number</th>
-        </tr>
+      <tr>
+        <th>Full Name</th>
+        <th>Address</th>
+        <th>Phone Number</th>
+      </tr>
     </thead>
     <tbody id="contact-table">
-        {% for contact in contacts %}
-        <tr>
-            <td>{{ contact.full_name }}</td>
-            <td>{{ contact.address }}</td>
-            <td>{{ contact.phone_number }}</td>
-        </tr>
-        {% empty %}
-        <tr>
-            <td colspan="3">No contacts available.</td>
-        </tr>
-        {% endfor %}
+      {# Loop through the 'contacts' list passed from the view #}
+      {% for contact in contacts %}
+      <tr>
+        <td>{{ contact.full_name }}</td> {# Display the contact's full name #}
+        <td>{{ contact.address }}</td>   {# Display the contact's address #}
+        <td>{{ contact.phone_number }}</td> {# Display the contact's phone number #}
+      </tr>
+      {% empty %}
+      {# If there are no contacts, display a message indicating that #}
+      <tr>
+        <td colspan="3">No contacts available.</td>
+      </tr>
+      {% endfor %}
     </tbody>
-</table>
+  </table>
 {% endblock %}
+{# End of the content block #}

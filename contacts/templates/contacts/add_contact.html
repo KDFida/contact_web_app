@@ -21,7 +21,6 @@ $(document).ready(function(){
             headers: { 'x-requested-with': 'XMLHttpRequest' },
             success: function(data){
                 $('#form-result').html('<div class="alert alert-success">Contact added successfully!</div>');
-                // Optionally, update the contact list dynamically
             },
             error: function(){
                 $('#form-result').html('<div class="alert alert-danger">An error occurred.</div>');
